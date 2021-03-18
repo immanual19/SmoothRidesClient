@@ -11,13 +11,16 @@ import Vehicles from './components/Vehicles/Vehicles';
 import SignIn from './components/SignIn/SignIn';
 import NotFound from './components/NotFound/NotFound';
 import SignUp from './components/SignUp/SignUp';
+import SearchResult from './components/SearchResult/SearchResult';
 import { createContext, useState } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export const UserContext=createContext();
 
 function App() {
 const [user,setUser]=useState({});
   return (
+
     <UserContext.Provider value={[user,setUser]} className="App">
       <Router>
       <Header></Header>
@@ -31,6 +34,9 @@ const [user,setUser]=useState({});
       <Route path="/signup">
       <SignUp></SignUp>
       </Route>
+      <PrivateRoute path="/searchVehicle">
+      <SearchResult></SearchResult>
+      </PrivateRoute>
       <Route path="*">
       <NotFound></NotFound>
       </Route>

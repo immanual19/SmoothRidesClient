@@ -1,6 +1,12 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../App';
 import './Header.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 const Header = () => {
   const [user,setUser]=useContext(UserContext);
     return (
@@ -25,7 +31,7 @@ const Header = () => {
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
               </li>
-              <button type="button" class="btn btn-warning">{user.isSignedIn ? user.name : 'Login'}</button>
+              <Link to="/login"><button type="button" class="btn btn-warning">{user.isSignedIn ? user.name : 'Login'}</button></Link>
             </ul>
           </div>
         </div>

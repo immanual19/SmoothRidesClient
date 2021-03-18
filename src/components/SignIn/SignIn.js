@@ -17,6 +17,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../firebase.config';
 import { UserContext } from '../../App';
+import { useHistory, useLocation } from 'react-router';
 if(firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -43,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const [user,setUser]=useContext(UserContext);
   const classes = useStyles();
+  const history=useHistory();
+  const location=useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
   const handleGoogleSignIn=()=>{
     const gProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth()
@@ -60,6 +64,7 @@ export default function SignIn() {
     const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
     setUser(signedInUser);
     console.log(user);
+    history.replace(from);
   }).catch((error) => {
 
     var errorCode = error.code;
@@ -89,7 +94,7 @@ export default function SignIn() {
     const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
     setUser(signedInUser);
     console.log(user);
-
+    history.replace(from);
     // ...
   })
   .catch((error) => {
