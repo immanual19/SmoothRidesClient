@@ -1,0 +1,22 @@
+.main-body{
+    background-image: url('../../images//Bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid lightgray;
+}
+.vehicle-card{
+    margin-top: 20%;
+    display: flex;
+    margin-bottom: 20%;
+    
+}
+.card {
+    padding: 2%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+  }
+  .card Img{
+      width: 80%;
+  }
