@@ -18,10 +18,16 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 export const UserContext=createContext();
 
 function App() {
-const [user,setUser]=useState({});
+const [loggedInUser,setLoggedInUser]=useState({
+  name:'',
+  email:'',
+  isSignedIn:false,
+  password:'',
+  vehicle:''
+});
   return (
 
-    <UserContext.Provider value={[user,setUser]} className="App">
+    <UserContext.Provider value={[loggedInUser,setLoggedInUser]} className="App">
       <Router>
       <Header></Header>
       <Switch>
@@ -34,7 +40,7 @@ const [user,setUser]=useState({});
       <Route path="/signup">
       <SignUp></SignUp>
       </Route>
-      <PrivateRoute path="/searchVehicle">
+      <PrivateRoute path="/searchvehicle">
       <SearchResult></SearchResult>
       </PrivateRoute>
       <Route path="*">

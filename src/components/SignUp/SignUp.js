@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-  const [user,setUser]=useContext(UserContext);
+  const [loggedInUser,setLoggedInUser]=useContext(UserContext);
   const classes = useStyles();
   const history=useHistory();
   const location=useLocation();
@@ -67,8 +67,9 @@ export default function SignUp() {
     var user = result.user;
 
     const {displayName,email}=user;
-    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:''};
-    setUser(signedInUser);
+    const {vehicle}=loggedInUser;
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:vehicle};
+    setLoggedInUser(signedInUser);
     console.log(user);
     history.replace(from);
   }).catch((error) => {
@@ -97,8 +98,9 @@ export default function SignUp() {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var accessToken = credential.accessToken;
     const {displayName,email}=user;
-    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:''};
-    setUser(signedInUser);
+    const {vehicle}=loggedInUser;
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:vehicle};
+    setLoggedInUser(signedInUser);
     console.log(user);
     history.replace(from);
     // ...
