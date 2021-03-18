@@ -5,7 +5,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -62,7 +67,7 @@ export default function SignUp() {
     var user = result.user;
 
     const {displayName,email}=user;
-    const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:''};
     setUser(signedInUser);
     console.log(user);
     history.replace(from);
@@ -92,7 +97,7 @@ export default function SignUp() {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var accessToken = credential.accessToken;
     const {displayName,email}=user;
-    const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:''};
     setUser(signedInUser);
     console.log(user);
     history.replace(from);
@@ -167,7 +172,6 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
@@ -175,7 +179,7 @@ export default function SignUp() {
             >Sign Up</Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

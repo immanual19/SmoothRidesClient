@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +18,12 @@ import "firebase/auth";
 import firebaseConfig from '../../firebase.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 if(firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -61,7 +67,7 @@ export default function SignIn() {
     var user = result.user;
 
     const {displayName,email}=user;
-    const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:''};
     setUser(signedInUser);
     console.log(user);
     history.replace(from);
@@ -91,7 +97,7 @@ export default function SignIn() {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var accessToken = credential.accessToken;
     const {displayName,email}=user;
-    const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:''};
     setUser(signedInUser);
     console.log(user);
     history.replace(from);
@@ -147,7 +153,6 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
@@ -162,7 +167,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
