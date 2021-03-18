@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +14,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import facebook from '../../images/Facebook.png';
 import google from '../../images/Google.png';
-
-
+import firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from '../../firebase.config';
+import { UserContext } from '../../App';
+if(firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+}
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -37,8 +42,68 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  const [user,setUser]=useContext(UserContext);
   const classes = useStyles();
+  const handleGoogleSignIn=()=>{
+    const gProvider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth()
+  .signInWithPopup(gProvider)
+  .then((result) => {
+ 
+    var credential = result.credential;
 
+ 
+    var token = credential.accessToken;
+
+    var user = result.user;
+
+    const {displayName,email}=user;
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
+    setUser(signedInUser);
+    console.log(user);
+  }).catch((error) => {
+
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    var email = error.email;
+
+    var credential = error.credential;
+
+  });
+  }
+  const handleFbSignIn=()=>{
+    var fbProvider = new firebase.auth.FacebookAuthProvider();
+    firebase
+  .auth()
+  .signInWithPopup(fbProvider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // The signed-in user info.
+    var user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var accessToken = credential.accessToken;
+    const {displayName,email}=user;
+    const signedInUser={name:displayName,email:email,isSignedIn:true,password:''};
+    setUser(signedInUser);
+    console.log(user);
+    // ...
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+
+    // ...
+  });
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -101,9 +166,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-          >
-            Sign Up
-          </Button>
+            >Sign Up</Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
@@ -115,10 +178,10 @@ export default function SignUp() {
       </div>
       <br/>
       <p style={{textAlign:'center', color:'lightgray',fontSize:'30px'}}>Or</p>
-      <div style={{display:'flex', border:'1px solid lightgray', borderRadius:'20px'}}>
+      <div onClick={handleFbSignIn} style={{display:'flex', border:'1px solid lightgray', borderRadius:'20px', cursor:'pointer'}}>
       <img style={{width:'20%',height:'20%'}} src={facebook} alt=""/><p style={{marginTop:'7%', float:'right', fontSize:'20px'}}>Continue With Facebook</p>
       </div>
-      <div style={{display:'flex', border:'1px solid lightgray', borderRadius:'20px'}}>
+      <div onClick={handleGoogleSignIn} style={{display:'flex', border:'1px solid lightgray', borderRadius:'20px', cursor:'pointer'}}>
       <img style={{width:'20%',height:'20%'}} src={google} alt=""/><p style={{marginTop:'7%', float:'right', fontSize:'20px'}}>Continue With Google</p>
       </div>
     </Container>

@@ -11,9 +11,14 @@ import Vehicles from './components/Vehicles/Vehicles';
 import SignIn from './components/SignIn/SignIn';
 import NotFound from './components/NotFound/NotFound';
 import SignUp from './components/SignUp/SignUp';
+import { createContext, useState } from 'react';
+
+export const UserContext=createContext();
+
 function App() {
+const [user,setUser]=useState({});
   return (
-    <div className="App">
+    <UserContext.Provider value={[user,setUser]} className="App">
       <Router>
       <Header></Header>
       <Switch>
@@ -31,7 +36,7 @@ function App() {
       </Route>
       </Switch>
       </Router>
-    </div>
+    </UserContext.Provider>
   );
 }
 

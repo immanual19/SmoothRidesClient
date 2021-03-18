@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../App';
 import './Header.css';
 const Header = () => {
+  const [user,setUser]=useContext(UserContext);
     return (
         <div className="header">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -23,7 +25,7 @@ const Header = () => {
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
               </li>
-              <button type="button" class="btn btn-warning">Login</button>
+              <button type="button" class="btn btn-warning">{user.isSignedIn ? user.name : 'Login'}</button>
             </ul>
           </div>
         </div>
