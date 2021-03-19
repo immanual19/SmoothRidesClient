@@ -145,6 +145,7 @@ export default function SignUp() {
     setLoggedInUser(signedInUser);
     history.replace(from);
     // ...
+    console.log('invalid input are not invalid after all');
   })
   .catch((error) => {
     var errorCode = error.code;

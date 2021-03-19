@@ -1,0 +1,20 @@
+.icon{
+    width: 60px;
+    height: 50px;
+}
+.result-template{
+    margin-top: 5%;
+    display: flex;
+    padding: 1%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+.result-template h6{
+
+    padding-right: 10%;
+}
+.people-icon{
+    margin-top: 2%;
+    width: 30px;
+    height: 30px;
+}
