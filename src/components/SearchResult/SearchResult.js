@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
+import { useParams } from 'react-router';
 import { UserContext } from '../../App';
 
 const SearchResult = () => {
     const [loggedInUser,setLoggedInUser]=useContext(UserContext);
+    const {type}=useParams();
     return (
         <div>
-            <h1>User has choosen {loggedInUser.vehicle}</h1>
+            <h1>{loggedInUser.name} has choosen {type}</h1>
         </div>
     );
 };

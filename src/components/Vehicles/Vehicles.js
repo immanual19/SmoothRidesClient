@@ -9,16 +9,20 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useHistory
 } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { UserContext } from '../../App';
 const Vehicles = () => {
+  const history=useHistory();
   const [loggedInUser,setLoggedInUser]=useContext(UserContext);
-  const choosedVehicle=(vName,loggedInUser)=>{
-    const userChosenVehicle={...loggedInUser};
-    userChosenVehicle.vehicle=vName;
-    setLoggedInUser(userChosenVehicle);
+  const choosedVehicle=(vName)=>{
+    // const userChosenVehicle={...loggedInUser};
+    // userChosenVehicle.vehicle=vName;
+    // setLoggedInUser(userChosenVehicle);
+    const url=`/searchvehicle/${vName}`;
+    history.push(url);
   }
     return (
         <div className="main-body">
@@ -28,7 +32,7 @@ const Vehicles = () => {
         <Card.Body>
         <br/>
           <Card.Title>BIKE</Card.Title>
-          <Link to="/searchvehicle"><Button onClick={()=>choosedVehicle('Bike',loggedInUser)} variant="contained" color="secondary" fullWidth>Select Bike</Button></Link>
+          <Link to={`/searchvehicle/${'bike'}`}><Button onClick={()=>choosedVehicle('Bike')} variant="contained" color="secondary" fullWidth>Select Bike</Button></Link>
         </Card.Body>
       </Card>
       <Card style={{ width: '18rem' }} className="card">
@@ -36,7 +40,7 @@ const Vehicles = () => {
         <Card.Body>
         <br/>
           <Card.Title>CAR</Card.Title>
-          <Link to="/searchvehicle"><Button onClick={()=>choosedVehicle('Car',loggedInUser)} variant="contained" color="secondary" fullWidth>Select Car</Button></Link>
+          <Link to={`/searchvehicle/${'car'}`}><Button onClick={()=>choosedVehicle('Car')} variant="contained" color="secondary" fullWidth>Select Car</Button></Link>
         </Card.Body>
       </Card>
       <Card style={{ width: '18rem' }} className="card">
@@ -44,7 +48,7 @@ const Vehicles = () => {
         <Card.Body>
         <br/>
           <Card.Title>BUS</Card.Title>
-          <Link to="/searchvehicle"><Button onClick={()=>choosedVehicle('Bus',loggedInUser)} variant="contained" color="secondary" fullWidth>Select Bus</Button></Link>
+          <Link to={`/searchvehicle/${'bus'}`}><Button onClick={()=>choosedVehicle('Bus')} variant="contained" color="secondary" fullWidth>Select Bus</Button></Link>
         </Card.Body>
       </Card>
       <Card style={{ width: '18rem' }} className="card">
@@ -52,7 +56,7 @@ const Vehicles = () => {
         <Card.Body>
         <br/>
           <Card.Title>TRAIN</Card.Title>
-          <Link to="/searchvehicle"><Button onClick={()=>choosedVehicle('Train',loggedInUser)} variant="contained" color="secondary" fullWidth>Select Train</Button></Link>
+          <Link to={`/searchvehicle/${'train'}`}><Button onClick={()=>choosedVehicle('Train')} variant="contained" color="secondary" fullWidth>Select Train</Button></Link>
         </Card.Body>
       </Card>
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -49,10 +49,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const [loggedInUser,setLoggedInUser]=useContext(UserContext);
-  const classes = useStyles();
+  const [newUser,setNewUser]=useState({email:'',password:''})
   const history=useHistory();
   const location=useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
+  const classes = useStyles();
+
   const handleGoogleSignIn=()=>{
     const gProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth()
@@ -117,6 +119,39 @@ export default function SignUp() {
     // ...
   });
   }
+
+  const handleBlur=(event)=>{
+    if(event.target.name==='email'){
+      const updateInfo={...newUser};
+      updateInfo.email=event.target.value;
+      setNewUser(updateInfo);
+    }
+    if(event.target.name==='password'){
+      const updateInfo={...newUser};
+      updateInfo.password=event.target.value;
+      setNewUser(updateInfo);
+    }
+    console.log("INputting validity",newUser);
+  }
+
+  const handleEmailSignUp=(newUser)=>{
+    const {email,password}=newUser;
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user;
+    const {vehicle}=loggedInUser;
+    const signedInUser={name:user.email,email:email,isSignedIn:true,password:'',vehicle:vehicle};
+    setLoggedInUser(signedInUser);
+    history.replace(from);
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -133,6 +168,7 @@ export default function SignUp() {
 
             <Grid item xs={12}>
               <TextField
+                onBlur={handleBlur}
                 variant="outlined"
                 required
                 fullWidth
@@ -142,6 +178,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
             <TextField
+              onBlur={handleBlur}
               variant="outlined"
               required
               fullWidth
@@ -151,29 +188,29 @@ export default function SignUp() {
           </Grid>
             <Grid item xs={12}>
               <TextField
+                onBlur={handleBlur}
                 variant="outlined"
                 required
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
-
-                autoComplete="current-password"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onBlur={handleBlur}
                 variant="outlined"
                 required
                 fullWidth
                 name="password"
                 label="Confirm Password"
                 type="password"
-                autoComplete="current-password"
               />
             </Grid>
           </Grid>
           <Button
+            onClick={()=>handleEmailSignUp(newUser)}
             fullWidth
             variant="contained"
             color="primary"

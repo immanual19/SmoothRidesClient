@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const [currentUser,setCurrentUser]=useState({email:'',password:''});
   const [loggedInUser,setLoggedInUser]=useContext(UserContext);
   const classes = useStyles();
   const history=useHistory();
@@ -117,6 +118,35 @@ export default function SignIn() {
     // ...
   });
   }
+const handleBlur=(event)=>{
+  if(event.target.name==='email'){
+    const updateInfo={...currentUser};
+    updateInfo.email=event.target.value;
+    setCurrentUser(updateInfo);
+  }
+  if(event.target.name==='password'){
+    const updateInfo={...currentUser};
+    updateInfo.password=event.target.value;
+    setCurrentUser(updateInfo);
+  }
+}
+  const handleEmailSignIn=(currentUser)=>{
+    const {email,password}=currentUser;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      const {vehicle}=loggedInUser;
+      const signedInUser={name:user.email,email:email,isSignedIn:true,password:'',vehicle:vehicle};
+      setLoggedInUser(signedInUser);
+      history.replace(from);
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -129,6 +159,7 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+           onBlur={handleBlur}
             variant="outlined"
             margin="normal"
             required
@@ -140,6 +171,7 @@ export default function SignIn() {
             autoFocus
           />
           <TextField
+            onBlur={handleBlur}
             variant="outlined"
             margin="normal"
             required
@@ -155,6 +187,7 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
+          onClick={()=>handleEmailSignIn(currentUser)}
             fullWidth
             variant="contained"
             color="primary"
