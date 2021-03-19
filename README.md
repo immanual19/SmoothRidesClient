@@ -7,6 +7,24 @@
 5. I don't own the idea of design, Images of this project. However I own the code. And, the API was generated using a third party website.
 6. This project was developed for educational purpose only.
 
+# Search Vehicle
+
+I haven't added loads of data on API. To know if the search function works properly or not
+
+Test with the following inputs:
+
+From: Mirpur 1
+To: Dhanmondi
+
+From: Mohammadpur
+To: Narayanganj
+
+From: New Market
+To: Savar
+
+From: Collage Gate
+To: Uttra
+
 # Library Used
 
 1. The project was developed with React and Material UI.
