@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ResultTemplate from '../ResultTemplate/ResultTemplate';
+import cardbg from '../../images/search-card.png';
+import map from '../../images/Map.png';
 import './SearchResult.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +25,7 @@ const SearchResult = () => {
     const {type}=useParams();
     const [destination,setDestination]=useState({from:'',to:''});
     const [tripInfo,setTripInfo]=useState([]);
+    const [searchResultShown,setSearchResultShown] = useState(false);
     useEffect(()=>{
         const url='https://api.mocki.io/v1/46a920e0';
         fetch(url)
@@ -46,21 +49,25 @@ const SearchResult = () => {
         const {from,to}=destination;
         const filteredResult=tripInfo.filter(trip=>trip.start===from && trip.end===to);
         setDesiredTrip(filteredResult);
+        setSearchResultShown(true);
     }
     return (
         <div style={{display:'flex'}}>
         <div className="search-result-container">
-            <form className={classes.root} noValidate autoComplete="off">
+        { !searchResultShown && <form className={classes.root} noValidate autoComplete="off">
       <TextField fullWidth onBlur={handleOnBlur} name="start" id="standard-basic" label="From" /> <br/>
       <TextField onBlur={handleOnBlur} name="end" id="standard-basic" label="To" /> <br/>
       <Button onClick={()=>handleSearchResult(destination)} variant="contained" color="secondary">Search</Button>
-    </form>
+    </form>}
+{
+    searchResultShown && <div style={{backgroundColor:'red',borderRadius:'20px',padding:'20px',backgroundImage:'cardbg'}}><h4>From: {destination.from}</h4><h4>To:{destination.to}</h4></div>
+}
     {
         desiredTrip.map(trip=><ResultTemplate vehicleType={type} trip={trip}></ResultTemplate>)
     }
         </div>
         <div className="map-container">
-        
+        <img src={map} alt=""/>
         </div>
 
         </div>

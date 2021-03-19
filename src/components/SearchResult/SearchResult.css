@@ -1,8 +1,27 @@
 .search-result-container{
-
     width: 25%;
+    height: 50%;
     margin-top: 5%;
     margin-left: 5%;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
     border-radius: 20px;
+}
+
+.search-card{
+    background-image: url('../../images/search-card.png');
+    background-size: cover;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 70%;
+    background-position: center;
+    background-color: blueviolet;
+    border-radius: 20px;
+    color: white;
+}
+
+.map-container img{
+    height: 70%;
+    width: 100%;
+    margin-left: 20%;
+    margin-top: 10%;
 }
