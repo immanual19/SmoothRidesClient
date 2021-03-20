@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import './Vehicles.css';
 import bike from '../../images/Frame.png';
@@ -17,6 +17,7 @@ import { UserContext } from '../../App';
 const Vehicles = () => {
   const history=useHistory();
   const [loggedInUser,setLoggedInUser]=useContext(UserContext);
+
   const choosedVehicle=(vName)=>{
     // const userChosenVehicle={...loggedInUser};
     // userChosenVehicle.vehicle=vName;
@@ -32,7 +33,7 @@ const Vehicles = () => {
         <Card.Body>
         <br/>
           <Card.Title>BIKE</Card.Title>
-          <Link to={`/searchvehicle/${'bike'}`}><Button onClick={()=>choosedVehicle('Bike')} variant="contained" color="secondary" fullWidth>Select Bike</Button></Link>
+          <Link to={`/searchvehicle/${"type"}`}><Button onClick={()=>choosedVehicle('Bike')} variant="contained" color="secondary" fullWidth>Select Bike</Button></Link>
         </Card.Body>
       </Card>
       <Card style={{ width: '18rem' }} className="card">

@@ -22,12 +22,12 @@ const SearchResult = () => {
     const classes = useStyles();
     const [desiredTrip,setDesiredTrip]=useState([]);
     const [loggedInUser,setLoggedInUser]=useContext(UserContext);
-    const {type}=useParams();
+    const {vehicletype}=useParams();
     const [destination,setDestination]=useState({from:'',to:''});
     const [tripInfo,setTripInfo]=useState([]);
     const [searchResultShown,setSearchResultShown] = useState(false);
     useEffect(()=>{
-        const url='https://api.mocki.io/v1/46a920e0';
+        const url='https://api.mocki.io/v1/4820104f';
         fetch(url)
         .then(res=>res.json())
         .then(data=>setTripInfo(data))
@@ -46,11 +46,13 @@ const SearchResult = () => {
         }
     }
     const handleSearchResult=(destination)=>{
-        const {from,to}=destination;
-        const filteredResult=tripInfo.filter(trip=>trip.start===from && trip.end===to);
+        const {from,to,type}=destination;
+        const filteredResult=tripInfo.filter(trip=>trip.start===from && trip.end===to && trip.type===vehicletype);
         setDesiredTrip(filteredResult);
         setSearchResultShown(true);
     }
+    console.log(desiredTrip);
+    console.log(vehicletype);
     return (
         <div style={{display:'flex'}}>
         <div className="search-result-container">
@@ -63,7 +65,7 @@ const SearchResult = () => {
     searchResultShown && <div style={{backgroundColor:'red',borderRadius:'20px',padding:'20px',backgroundImage:'cardbg'}}><h4>From: {destination.from}</h4><h4>To:{destination.to}</h4></div>
 }
     {
-        desiredTrip.map(trip=><ResultTemplate vehicleType={type} trip={trip}></ResultTemplate>)
+        desiredTrip.map(trip=><ResultTemplate trip={trip}></ResultTemplate>)
     }
         </div>
         <div className="map-container">

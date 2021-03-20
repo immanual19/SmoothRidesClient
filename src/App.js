@@ -40,7 +40,7 @@ const [loggedInUser,setLoggedInUser]=useState({
       <Route path="/signup">
       <SignUp></SignUp>
       </Route>
-      <PrivateRoute path="/searchvehicle/:type">
+      <PrivateRoute path="/searchvehicle/:vehicletype">
       <SearchResult></SearchResult>
       </PrivateRoute>
       <Route path="*">
