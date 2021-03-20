@@ -69,7 +69,7 @@ const SearchResult = () => {
     }
         </div>
         <div className="map-container">
-        <img src={map} alt=""/>
+        <iframe style={{height:'250%', width:'250%'}} frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%20Mohammadpur+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=f9a664b9cdd05a747c1d57abb68614b746365db9'></script>
         </div>
 
         </div>

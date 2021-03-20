@@ -19,9 +19,7 @@
     color: white;
 }
 
-.map-container img{
-    height: 70%;
-    width: 100%;
-    margin-left: 20%;
-    margin-top: 10%;
+.map-container{
+    margin-left: 10%;
+    margin-top: 5%;
 }
