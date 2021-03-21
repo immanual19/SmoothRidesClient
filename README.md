@@ -19,9 +19,6 @@ To: Dhanmondi
 From: Mohammadpur
 To: Narayanganj
 
-From: New Market
-To: Savar
-
 From: Collage Gate
 To: Uttra
 
