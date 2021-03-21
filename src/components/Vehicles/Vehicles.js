@@ -14,10 +14,21 @@ import {
 } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { UserContext } from '../../App';
+import fakeData from '../../fakeData/fakeData';
 const Vehicles = () => {
   const history=useHistory();
-  const [loggedInUser,setLoggedInUser]=useContext(UserContext);
 
+console.log(fakeData);
+  
+  
+  const bikeInfo=fakeData.find(vehicle=>vehicle.bktype==='bike');
+  const carInfo=fakeData.find(vehicle=>vehicle.crtype==='car');
+  const busInfo=fakeData.find(vehicle=>vehicle.bstype==='bus');
+  const trainInfo=fakeData.find(vehicle=>vehicle.trtype==='train');
+  const {bkname,bktype,bkimage}=bikeInfo;
+  const {crname,crtype,crimage}=carInfo;
+  const {bsname,bstype,bsimage}=busInfo;
+  const {trname,trtype,trimage}=trainInfo;
   const choosedVehicle=(vName)=>{
     // const userChosenVehicle={...loggedInUser};
     // userChosenVehicle.vehicle=vName;
@@ -27,39 +38,41 @@ const Vehicles = () => {
   }
     return (
         <div className="main-body">
-        <div className="vehicle-card">
-        <Card style={{ width: '18rem' }} className="card">
-        <Card.Img variant="top" src={bike} />
+        <div className="vehicle-card-container">
+        <Link to={`/searchvehicle/${bktype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}>
+        <Card style={{ width: '18rem', height: '18rem'}} className="card">
+        <Card.Img variant="top" src={bkimage} />
         <Card.Body>
         <br/>
-          <Card.Title>BIKE</Card.Title>
-          <Link to={`/searchvehicle/${"type"}`}><Button onClick={()=>choosedVehicle('Bike')} variant="contained" color="secondary" fullWidth>Select Bike</Button></Link>
+          <Card.Title >{bkname}</Card.Title>
         </Card.Body>
       </Card>
-      <Card style={{ width: '18rem' }} className="card">
-        <Card.Img variant="top" src={car} />
+      </Link>
+      <Link to={`/searchvehicle/${crtype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}>
+      <Card style={{ width: '18rem', height: '18rem' }} className="card">
+        <Card.Img variant="top" src={crimage} />
         <Card.Body>
         <br/>
-          <Card.Title>CAR</Card.Title>
-          <Link to={`/searchvehicle/${'car'}`}><Button onClick={()=>choosedVehicle('Car')} variant="contained" color="secondary" fullWidth>Select Car</Button></Link>
+          <Card.Title style={{marginTop:'8px'}}>{crname}</Card.Title>
         </Card.Body>
       </Card>
-      <Card style={{ width: '18rem' }} className="card">
-        <Card.Img variant="top" src={bus} />
+      </Link>
+      <Link to={`/searchvehicle/${bstype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}><Card style={{ width: '18rem',height: '18rem' }} className="card">
+        <Card.Img variant="top" src={bsimage} />
         <Card.Body>
         <br/>
-          <Card.Title>BUS</Card.Title>
-          <Link to={`/searchvehicle/${'bus'}`}><Button onClick={()=>choosedVehicle('Bus')} variant="contained" color="secondary" fullWidth>Select Bus</Button></Link>
+          <Card.Title style={{marginTop:'8px'}}>{bsname}</Card.Title>
+          
         </Card.Body>
-      </Card>
-      <Card style={{ width: '18rem' }} className="card">
-        <Card.Img variant="top" src={train} />
+      </Card></Link>
+      <Link to={`/searchvehicle/${trtype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}><Card style={{ width: '18rem',height: '18rem'}} className="card">
+        <Card.Img variant="top" src={trimage} />
         <Card.Body>
         <br/>
-          <Card.Title>TRAIN</Card.Title>
-          <Link to={`/searchvehicle/${'train'}`}><Button onClick={()=>choosedVehicle('Train')} variant="contained" color="secondary" fullWidth>Select Train</Button></Link>
+          <Card.Title>{trname}</Card.Title>
+          
         </Card.Body>
-      </Card>
+      </Card></Link>
         </div>
         </div>
     );

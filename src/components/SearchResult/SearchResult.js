@@ -51,8 +51,6 @@ const SearchResult = () => {
         setDesiredTrip(filteredResult);
         setSearchResultShown(true);
     }
-    console.log(desiredTrip);
-    console.log(vehicletype);
     return (
         <div style={{display:'flex'}}>
         <div className="search-result-container">
