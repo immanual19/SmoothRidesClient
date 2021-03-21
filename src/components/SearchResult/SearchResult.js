@@ -60,7 +60,7 @@ const SearchResult = () => {
       <Button onClick={()=>handleSearchResult(destination)} variant="contained" color="secondary">Search</Button>
     </form>}
 {
-    searchResultShown && <div style={{backgroundColor:'red',borderRadius:'20px',padding:'20px',backgroundImage:'cardbg'}}><h4>From: {destination.from}</h4><h4>To:{destination.to}</h4></div>
+    searchResultShown && <div style={{backgroundColor:'#f60257',borderRadius:'20px',padding:'20px',backgroundImage:'cardbg'}}><h4>From: {destination.from}</h4><h4>To:{destination.to}</h4></div>
 }
     {
         desiredTrip.map(trip=><ResultTemplate trip={trip}></ResultTemplate>)
