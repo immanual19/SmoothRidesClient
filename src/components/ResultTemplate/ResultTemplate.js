@@ -6,7 +6,7 @@ import train from '../../images/Group.png';
 import peopleicon from '../../images/peopleicon.png';
 import './ResultTemplate.css';
 const ResultTemplate = (props) => {
-    console.log(props);
+
     const {capacity,cost,typeimage,peopleicon,type}=props.trip;
 
 

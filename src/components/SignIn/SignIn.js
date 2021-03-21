@@ -71,7 +71,7 @@ export default function SignIn() {
     const {vehicle}=loggedInUser;
     const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:vehicle};
     setLoggedInUser(signedInUser);
-    console.log(user);
+
     history.replace(from);
   }).catch((error) => {
 
@@ -102,7 +102,7 @@ export default function SignIn() {
     const {vehicle}=loggedInUser;
     const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:vehicle};
     setLoggedInUser(signedInUser);
-    console.log(user);
+
     history.replace(from);
     // ...
   })

@@ -72,7 +72,7 @@ export default function SignUp() {
     const {vehicle}=loggedInUser;
     const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:vehicle};
     setLoggedInUser(signedInUser);
-    console.log(user);
+
     history.replace(from);
   }).catch((error) => {
 
@@ -103,7 +103,7 @@ export default function SignUp() {
     const {vehicle}=loggedInUser;
     const signedInUser={name:displayName,email:email,isSignedIn:true,password:'',vehicle:vehicle};
     setLoggedInUser(signedInUser);
-    console.log(user);
+  
     history.replace(from);
     // ...
   })
@@ -131,7 +131,6 @@ export default function SignUp() {
       updateInfo.password=event.target.value;
       setNewUser(updateInfo);
     }
-    console.log("INputting validity",newUser);
   }
 
   const handleEmailSignUp=(newUser)=>{
@@ -145,7 +144,7 @@ export default function SignUp() {
     setLoggedInUser(signedInUser);
     history.replace(from);
     // ...
-    console.log('invalid input are not invalid after all');
+
   })
   .catch((error) => {
     var errorCode = error.code;

@@ -17,10 +17,6 @@ import { UserContext } from '../../App';
 import fakeData from '../../fakeData/fakeData';
 const Vehicles = () => {
   const history=useHistory();
-
-console.log(fakeData);
-  
-  
   const bikeInfo=fakeData.find(vehicle=>vehicle.bktype==='bike');
   const carInfo=fakeData.find(vehicle=>vehicle.crtype==='car');
   const busInfo=fakeData.find(vehicle=>vehicle.bstype==='bus');
@@ -29,17 +25,14 @@ console.log(fakeData);
   const {crname,crtype,crimage}=carInfo;
   const {bsname,bstype,bsimage}=busInfo;
   const {trname,trtype,trimage}=trainInfo;
-  const choosedVehicle=(vName)=>{
-    // const userChosenVehicle={...loggedInUser};
-    // userChosenVehicle.vehicle=vName;
-    // setLoggedInUser(userChosenVehicle);
-    const url=`/searchvehicle/${vName}`;
+  const choosedVehicle=(vType)=>{
+    const url=`/searchvehicle/${vType}`;
     history.push(url);
   }
     return (
         <div className="main-body">
         <div className="vehicle-card-container">
-        <Link to={`/searchvehicle/${bktype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}>
+        <Link to={`/searchvehicle/${bktype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}} onClick={()=>choosedVehicle(bktype)}>
         <Card style={{ width: '18rem', height: '18rem'}} className="card">
         <Card.Img variant="top" src={bkimage} />
         <Card.Body>
@@ -48,7 +41,7 @@ console.log(fakeData);
         </Card.Body>
       </Card>
       </Link>
-      <Link to={`/searchvehicle/${crtype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}>
+      <Link to={`/searchvehicle/${crtype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}} onClick={()=>choosedVehicle(crtype)}>
       <Card style={{ width: '18rem', height: '18rem' }} className="card">
         <Card.Img variant="top" src={crimage} />
         <Card.Body>
@@ -57,7 +50,7 @@ console.log(fakeData);
         </Card.Body>
       </Card>
       </Link>
-      <Link to={`/searchvehicle/${bstype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}><Card style={{ width: '18rem',height: '18rem' }} className="card">
+      <Link to={`/searchvehicle/${bstype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}><Card style={{ width: '18rem',height: '18rem' }} className="card" onClick={()=>choosedVehicle(bstype)}>
         <Card.Img variant="top" src={bsimage} />
         <Card.Body>
         <br/>
@@ -65,7 +58,7 @@ console.log(fakeData);
           
         </Card.Body>
       </Card></Link>
-      <Link to={`/searchvehicle/${trtype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}><Card style={{ width: '18rem',height: '18rem'}} className="card">
+      <Link to={`/searchvehicle/${trtype}`} style={{textAlign:'center',color:'black',textDecoration:'none'}}><Card style={{ width: '18rem',height: '18rem'}} className="card" onClick={()=>choosedVehicle(trtype)}>
         <Card.Img variant="top" src={trimage} />
         <Card.Body>
         <br/>
