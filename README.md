@@ -30,3 +30,7 @@ To: Uttra
 # Live Site Link
 
 1. https://react-auth-immanual19.web.app/
+
+# Resume Link
+
+1. https://drive.google.com/file/d/1zUz2EkrmaQ6MDOnxgxlRlfOsR4i8VE9M/view
