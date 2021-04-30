@@ -33,3 +33,18 @@ To: Uttra
 # Resume Link
 
 1. https://drive.google.com/file/d/1zUz2EkrmaQ6MDOnxgxlRlfOsR4i8VE9M/view
+
+# Screenshots
+
+# Home
+
+![Alt text](https://raw.githubusercontent.com/immanual19/SmoothRidesClient/main/src/Screenshot/Home.png "Optional title")
+
+# Login
+
+![Alt text](https://raw.githubusercontent.com/immanual19/SmoothRidesClient/main/src/Screenshot/Login.png "Optional title")
+
+# Search
+
+![Alt text](https://raw.githubusercontent.com/immanual19/SmoothRidesClient/main/src/Screenshot/Search.png "Optional title")
+
