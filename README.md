@@ -26,6 +26,7 @@ To: Uttra
 
 1. The project was developed with React and Material UI.
 
+![alt text](https://raw.githubusercontent.com/immanual19/SmoothRidesClient/main/src/images/Map.png)
 
 # Live Site Link
 
